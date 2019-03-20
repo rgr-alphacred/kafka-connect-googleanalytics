@@ -1,6 +1,7 @@
 package org.mrtrustworthy.kafka.connect.googleanalytics.source;
 
 import org.apache.http.auth.AUTH;
+import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.common.config.ConfigDef.Type;
 import org.mrtrustworthy.kafka.connect.googleanalytics.GASourceConnector;
@@ -15,15 +16,15 @@ import static org.apache.kafka.common.config.ConfigDef.*;
 public class GAConnectorConfig {
     private static final Logger log = LoggerFactory.getLogger(GASourceConnector.class);
 
-    public final static String APPLICATION_NAME = "connector.name";
-    //public final static String CONNECTOR_CLASS = "connector.class";
-    //public final static String TASK_MAX = "connector.task.max";
+    public final static String APPLICATION_NAME = "name";
+    public final static String TASKS_MAX = "tasks.max";
+    public final static String CONNECTOR_CLASS = "connector.class";
     public final static String TOPIC_PREFIX = "connector.topic.prefix";
-    public final static String POLLING_FREQUENCY = "connector.polling.frequency";
-    public final static String VIEW_ID = "source.ga.view.id";
-    public final static String DIMENSIONS = "source.ga.view.fetch.dimensions";
-    public final static String MEASURES = "source.ga.view.fetch.measures";
-    public final static String AUTHZ_MODE = "source.ga.authorization.mode";
+    public final static String POLLING_FREQUENCY = "polling.frequency";
+    public final static String VIEW_ID = "ga.view.id";
+    public final static String DIMENSIONS = "ga.view.fetch.dimensions";
+    public final static String MEASURES = "ga.view.fetch.measures";
+    public final static String AUTHZ_MODE = "ga.authorization.mode";
 
 
     public static final ConfigDef CONFIG_DEF = new ConfigDef()
