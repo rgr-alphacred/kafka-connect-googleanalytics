@@ -16,7 +16,7 @@ public class InstalledApplicationAnalyticsReportingService extends AnalyticsRepo
         // load client secrets
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(
                 JSON_FACTORY,
-                new InputStreamReader(loadFromClasspath("/installed_application_secrets.json")));
+                new InputStreamReader(loadFromClasspath("/etc/schema-registry/installed_application_secrets.json")));
         // set up authorization code flow
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 httpTransport,

@@ -2,11 +2,9 @@ package org.mrtrustworthy.kafka.connect.googleanalytics.source;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.security.GeneralSecurityException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import com.google.api.services.analyticsreporting.v4.AnalyticsReporting;
 import com.google.api.services.analyticsreporting.v4.model.Report;
 import org.apache.kafka.connect.data.Struct;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,7 @@ class GAReportFetcherTest {
     GAConnectorConfig getSampleConfig() {
         Properties prop = new Properties();
         ClassLoader loader = GAConnectorConfig.class.getClassLoader();
-        InputStream stream = loader.getResourceAsStream("test-conf.properties");
+        InputStream stream = loader.getResourceAsStream("etc/schema-registry/test-conf.properties");
         try {
             prop.load(stream);
         } catch (IOException e) {
