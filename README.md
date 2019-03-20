@@ -31,7 +31,6 @@ Helper:
 * [Google API - OAuth2 (installed application)](https://developers.google.com/api-client-library/java/google-api-java-client/oauth2#installed_applications)
 
 
-
 ## Confluent
 
 ### Installation
@@ -67,7 +66,18 @@ IT2NTPAEOWLRT47E
 N24WxwooVRRrf77gY8qmL1dCBTPh6SlKTPmqn3EF5jegJ0e6M46B5MHoxJZRX47U
 
 
-### NIFI
+## Dockerize
+
+Run `docker build --rm --build-arg KAFKA_CONNECT_VERSION=5.1.2 --build-arg CONNECTOR_VERSION=1.0.0-rc1 -t alpha-credit/kafka-connect-ga .`
+`docker run --name kafka-connect-ga -d alpha-credit/kafka-connect-ga`
+`docker exec kafka-connect-ga sh -c "ls"`
+
+tips remove dangling images: `docker rmi $(docker images -f dangling=true -q)`
+
+
+https://github.com/confluentinc/cp-docker-images/blob/5.1.2-post/examples/cp-all-in-one/Dockerfile
+
+## NIFI
 
 
 Further discussion
