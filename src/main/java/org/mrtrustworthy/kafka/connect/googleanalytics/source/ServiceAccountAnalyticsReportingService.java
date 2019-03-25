@@ -10,7 +10,7 @@ public class ServiceAccountAnalyticsReportingService extends AnalyticsReportingS
     @Override
     protected Credential credential() throws Exception {
         return GoogleCredential
-                .fromStream(loadFromClasspath("/etc/schema-registry/service_account_secrets.json"))
+                .fromStream(loadFromClasspath("secrets/service_account_secrets.json"))
                 .createScoped(SCOPES);
     }
 }
