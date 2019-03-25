@@ -54,6 +54,7 @@ public class ReportParser {
         if (this.schema == null) {
             // This is the case in the initial run - just use the newly created schema
             this.schema = newSchema;
+            log.info("Schema of {} is initialized as: {}.", topicName, this.schema);
         } else if (newSchema.equals(this.schema)) {
             // effectively do nothing if the schema has not changed
             log.info("Schema has not changed, continuing to use version " + this.currentSchemaVersion);
@@ -62,6 +63,7 @@ public class ReportParser {
             log.info("Schema has changed, need to use new schema with version " + this.currentSchemaVersion);
             // Need to re-create schema to include the version bump
             this.schema = (ConnectSchema) this.createSchemaOffReport(topicName, report);
+            log.info("New the schema of {} is defined: {}.", topicName, this.schema);
         }
     }
 

@@ -4,6 +4,8 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.analyticsreporting.v4.AnalyticsReporting;
 import com.google.api.services.analyticsreporting.v4.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class GAReportFetcher {
+
+    private static final Logger logger = LoggerFactory.getLogger(GAReportFetcher.class);
 
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
 
@@ -47,10 +51,12 @@ public class GAReportFetcher {
     protected Report getReport(String viewId, String[] metrics, String[] dimensions) throws IOException {
         // Create the DateRange object.
         DateRange dateRange = new DateRange();
-        dateRange.setStartDate("17DaysAgo");
+        //dateRange.setStartDate("1DaysAgo");
+        dateRange.setStartDate("yesterday"); // see https://developers.google.com/analytics/devguides/reporting/core/v3/reference
         dateRange.setEndDate("today");
 
         // Create the ReportRequest object.
+        logger.info("Fetch report from viewId: {} wiht param: dateRange={}, dimensions={}, metrics={}", viewId, dateRange, dimensions, metrics);
         ReportRequest request = new ReportRequest()
             .setViewId(viewId)
             .setDateRanges(Collections.singletonList(dateRange))
@@ -67,7 +73,9 @@ public class GAReportFetcher {
         GetReportsResponse response = service.reports().batchGet(getReport).execute();
 
         // Return the response.
-        return response.getReports().get(0);
+        Report report = response.getReports().get(0);
+        logger.info("Retrieve {} records.", report.getData().getRowCount());
+        return report;
     }
 
     /**
