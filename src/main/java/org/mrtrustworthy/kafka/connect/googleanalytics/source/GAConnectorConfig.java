@@ -1,16 +1,17 @@
 package org.mrtrustworthy.kafka.connect.googleanalytics.source;
 
-import org.apache.http.auth.AUTH;
-import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.common.config.ConfigDef.Type;
 import org.mrtrustworthy.kafka.connect.googleanalytics.GASourceConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static org.apache.kafka.common.config.ConfigDef.*;
+import static org.apache.kafka.common.config.ConfigDef.Importance;
 
 
 public class GAConnectorConfig {
