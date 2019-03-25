@@ -66,6 +66,10 @@ IT2NTPAEOWLRT47E
 N24WxwooVRRrf77gY8qmL1dCBTPh6SlKTPmqn3EF5jegJ0e6M46B5MHoxJZRX47U
 
 
+Helper method:
+* `../confluent-5.1.2/bin/kafka-configs  --zookeeper localhost:2181 -entity-type topics --alter --entity-name ga_test.101327607 --add-config retention.ms=1000` pour purger un topic
+* `../confluent-5.1.2/bin/kafka-console-consumer --bootstrap-server localhost:9092 --whitelist ga_test.101327607 --from-beginning` pour lire le topic
+
 ## Dockerize
 
 Run `docker build --rm --build-arg KAFKA_CONNECT_VERSION=5.1.2 --build-arg CONNECTOR_VERSION=1.0.0-rc1 -t alpha-credit/kafka-connect-ga .`
