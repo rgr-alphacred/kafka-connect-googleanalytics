@@ -1,5 +1,5 @@
 
-CONFLUENT_PATH := ../confluent/confluent-5.1.2
+CONFLUENT_PATH := ../confluent-5.1.2
 
 run-kafka:
 	${CONFLUENT_PATH}/bin/confluent start
@@ -22,10 +22,10 @@ basejar:
 	mvn clean package -DskipTests
 
 testjar:
-	mkdir testjar
+	mkdir -p etc/kafka-connect/jars/
 
 testjar/kafka-connect-ga-1.0.0-rc1.jar: basejar testjar
-	cp target/kafka-connect-ga-1.0.0-rc1.jar testjar/kafka-connect-ga-1.0.0-rc1.jar
+	cp target/kafka-connect-ga-1.0.0-rc1.jar etc/kafka-connect/jars/kafka-connect-ga-1.0.0-rc1.jar
 
-test-run: testjar/kafka-connect-ga-1.0.0-rc1.jar
-	${CONFLUENT_PATH}/bin/connect-standalone src/main/resources/connect-standalone.properties src/main/resources/test-conf.properties
+test-run: etc/kafka-connect/jars/kafka-connect-ga-1.0.0-rc1.jar
+	${CONFLUENT_PATH}/bin/connect-standalone etc/kafka-connect/connect-standalone.properties etc/kafka-connect/test-conf.properties
