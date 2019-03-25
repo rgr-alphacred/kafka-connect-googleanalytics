@@ -33,7 +33,7 @@ public abstract class AnalyticsReportingService {
     }
 
     protected InputStream loadFromClasspath(String name) {
-        return AnalyticsReportingService.class.getResourceAsStream(name);
+        return Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
     }
 
     protected abstract Credential credential() throws Exception;
