@@ -35,12 +35,11 @@ public class GASourceTask extends SourceTask {
 
     /**
      * This should be the only place where the topic name is assembled
-     * TODO: Turn the topic.prefix into a topic.template and format accordingly
      * @return the topic name
      */
     private String buildTopicName(){
         // replacing - with _ for avro subject names - do we actually need to do this or can subject/topic name differ?
-        return (this.config.getTopicPrefix() + this.config.getViewId()).replace("-", "_");
+        return (this.config.getTopicPrefix() + "view_" + this.config.getViewId()).replace("-", "_");
     }
 
 
