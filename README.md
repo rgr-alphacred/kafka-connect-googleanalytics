@@ -72,14 +72,38 @@ Helper method:
 
 ## Dockerize
 
-Run `docker build --rm --build-arg KAFKA_CONNECT_VERSION=5.1.2 --build-arg CONNECTOR_VERSION=1.0.0-rc1 -t alpha-credit/kafka-connect-ga .`
-`docker run --name kafka-connect-ga -d alpha-credit/kafka-connect-ga`
-`docker exec kafka-connect-ga sh -c "ls"`
+* Run `docker build --rm --build-arg KAFKA_CONNECT_VERSION=5.1.2 --build-arg CONNECTOR_VERSION=1.0.0-rc1 -t alpha-credit/kafka-connect-ga .`
+* `docker run --name kafka-connect-ga -d alpha-credit/kafka-connect-ga`
+* `docker exec kafka-connect-ga sh -c "ls"`
+
 
 tips remove dangling images: `docker rmi $(docker images -f dangling=true -q)`
 
 
 https://github.com/confluentinc/cp-docker-images/blob/5.1.2-post/examples/cp-all-in-one/Dockerfile
+
+```
+{
+  "name": "ga_alphacred",
+  "connector.class": "org.mrtrustworthy.kafka.connect.googleanalytics.GASourceConnector",
+  "tasks.max": "1",
+  "key.converter": "io.confluent.connect.avro.AvroConverter",
+  "value.converter": "io.confluent.connect.avro.AvroConverter",
+  "connector.topic.prefix": "ga_test.",
+  "polling.frequency": "60000",
+  "ga.view.id": "101327607",
+  "ga.view.fetch.dimensions": [
+    "pageTitle",
+    "dateHourMinute"
+  ],
+  "ga.view.fetch.measures": [
+    "sessions",
+    "hits"
+  ],
+  "ga.authorization.mode": "service_account"
+}
+```
+
 
 ## NIFI
 
