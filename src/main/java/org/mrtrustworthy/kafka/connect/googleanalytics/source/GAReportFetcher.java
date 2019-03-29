@@ -52,8 +52,8 @@ public class GAReportFetcher {
         // Create the DateRange object.
         DateRange dateRange = new DateRange();
         //dateRange.setStartDate("1DaysAgo");
-        dateRange.setStartDate("yesterday"); // see https://developers.google.com/analytics/devguides/reporting/core/v3/reference
-        dateRange.setEndDate("today");
+        dateRange.setStartDate("2DaysAgo"); // see https://developers.google.com/analytics/devguides/reporting/core/v3/reference
+        dateRange.setEndDate("yesterday");
 
         // Create the ReportRequest object.
         logger.info("Fetch report from viewId: {} wiht param: dateRange={}, dimensions={}, metrics={}", viewId, dateRange, dimensions, metrics);
