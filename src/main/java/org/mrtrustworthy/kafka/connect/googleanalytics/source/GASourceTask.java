@@ -9,7 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class GASourceTask extends SourceTask {
     private static final Logger log = LoggerFactory.getLogger(GASourceConnector.class);
@@ -50,6 +53,7 @@ public class GASourceTask extends SourceTask {
 
     @Override
     public void start(Map<String, String> props) {
+        log.info("Starting the GA task");
         this.config = GAConnectorConfig.fromConfigMap(props);
         try {
             this.fetcher = new GAReportFetcher(config.getApplicationName(), config.getAuthzMode());
@@ -61,6 +65,7 @@ public class GASourceTask extends SourceTask {
 
     @Override
     public List<SourceRecord> poll() throws InterruptedException {
+        log.info("Polling GA.");
         final ArrayList<SourceRecord> records = new ArrayList<>();
         Report report;
         try {
@@ -76,6 +81,7 @@ public class GASourceTask extends SourceTask {
             records.add(this.buildSourceRecord(struct));
         }
 
+        log.info("Sleeping for {}.", this.config.getPollingFrequency());
         Thread.sleep(this.config.getPollingFrequency());
 
         return records;
@@ -96,6 +102,6 @@ public class GASourceTask extends SourceTask {
 
     @Override
     public synchronized void stop() {
-
+        log.info("Stopping GA task.");
     }
 }

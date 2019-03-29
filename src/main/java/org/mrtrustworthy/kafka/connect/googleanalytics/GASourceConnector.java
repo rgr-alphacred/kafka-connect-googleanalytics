@@ -5,12 +5,11 @@ import org.apache.kafka.connect.connector.Task;
 import org.apache.kafka.connect.source.SourceConnector;
 import org.mrtrustworthy.kafka.connect.googleanalytics.source.GAConnectorConfig;
 import org.mrtrustworthy.kafka.connect.googleanalytics.source.GASourceTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class GASourceConnector extends SourceConnector{
 
@@ -37,13 +36,13 @@ public class GASourceConnector extends SourceConnector{
 
     @Override
     public void start(Map<String, String> map) {
-        logger.info("Starting GASourceConnector");
         this.config = GAConnectorConfig.fromConfigMap(map);
+        logger.info("Starting GASourceConnector with config {}.", config);
     }
 
     @Override
     public void stop() {
-
+        logger.info("stopping GASourceConnector.");
     }
 
     @Override
