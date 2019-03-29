@@ -39,7 +39,7 @@ public class GASourceTask extends SourceTask {
      */
     private String buildTopicName(){
         // replacing - with _ for avro subject names - do we actually need to do this or can subject/topic name differ?
-        return (this.config.getTopicPrefix() + "view_" + this.config.getViewId()).replace("-", "_");
+        return (this.config.getTopicPrefix() + this.config.getViewId()).replace("-", "_");
     }
 
 
