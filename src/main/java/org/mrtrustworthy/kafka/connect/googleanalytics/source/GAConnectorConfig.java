@@ -6,10 +6,7 @@ import org.mrtrustworthy.kafka.connect.googleanalytics.GASourceConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.apache.kafka.common.config.ConfigDef.Importance;
 
@@ -137,5 +134,18 @@ public class GAConnectorConfig {
 
     public void setAuthzMode(String authzMode) {
         this.authzMode = authzMode;
+    }
+
+    @Override
+    public String toString() {
+        return "GAConnectorConfig{" +
+                "applicationName='" + applicationName + '\'' +
+                ", topicPrefix='" + topicPrefix + '\'' +
+                ", pollingFrequency=" + pollingFrequency +
+                ", viewId='" + viewId + '\'' +
+                ", dimensions=" + Arrays.toString(dimensions) +
+                ", measures=" + Arrays.toString(measures) +
+                ", authzMode='" + authzMode + '\'' +
+                '}';
     }
 }
