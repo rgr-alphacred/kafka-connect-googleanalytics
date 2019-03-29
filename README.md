@@ -61,14 +61,11 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 security.protocol=SASL_SSL
 ```
 
-API KEY & SECRET
-IT2NTPAEOWLRT47E
-N24WxwooVRRrf77gY8qmL1dCBTPh6SlKTPmqn3EF5jegJ0e6M46B5MHoxJZRX47U
-
-
 Helper method:
 * `../confluent-5.1.2/bin/kafka-configs  --zookeeper localhost:2181 -entity-type topics --alter --entity-name ga_test.101327607 --add-config retention.ms=1000` pour purger un topic
 * `../confluent-5.1.2/bin/kafka-console-consumer --bootstrap-server localhost:9092 --whitelist ga_test.101327607 --from-beginning` pour lire le topic
+* `../confluent-5.1.2/bin/kafka-topics --zookeeper localhost:2181 --delete --topic ga_test.view_view_101327607 
+`
 
 ## Dockerize
 
@@ -87,10 +84,9 @@ https://github.com/confluentinc/cp-docker-images/blob/5.1.2-post/examples/cp-all
   "name": "ga_alphacred",
   "connector.class": "org.mrtrustworthy.kafka.connect.googleanalytics.GASourceConnector",
   "tasks.max": "1",
-  "key.converter": "io.confluent.connect.avro.AvroConverter",
-  "value.converter": "io.confluent.connect.avro.AvroConverter",
-  "connector.topic.prefix": "ga_test.",
-  "polling.frequency": "60000",
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "connector.topic.prefix": "ga_view_",
+  "polling.frequency": "86400000",
   "ga.view.id": "101327607",
   "ga.view.fetch.dimensions": [
     "pageTitle",
