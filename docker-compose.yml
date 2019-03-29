@@ -48,11 +48,12 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   connect:
-#    image: alphacredit/kafka-connect-ga:latest
-    image: confluentinc/kafka-connect-datagen:latest
+    image: alphacredit/kafka-connect-ga:latest
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        KAFKA_CONNECT_VERSION: 5.1.2
     hostname: connect
     container_name: connect
     depends_on:
